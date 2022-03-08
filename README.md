@@ -1,3 +1,13 @@
+## Instalación de MUI
+```bash
+npm install @mui/material @emotion/react @emotion/styled
+```
+
+## Instalación de Font Roboto para la tipografia
+```bash
+npm install @fontsource/roboto     
+```
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

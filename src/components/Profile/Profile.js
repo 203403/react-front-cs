@@ -21,86 +21,86 @@ const Input = styled('input')({
 
 function App() {
 
-    let varId = localStorage.getItem('id_user')
-    let varToken = localStorage.getItem('token')
-    let usernameU, first_nameU, last_nameU, emailU;
-    console.log(varToken)
+    // let varId = localStorage.getItem('id_user')
+    // let varToken = localStorage.getItem('token')
+    // let usernameU, first_nameU, last_nameU, emailU;
+    // console.log(varToken)
 
-    window.onload = function visualizar_datos() {
-        axios.get("http://localhost:8000/api/v1/profile/user/" + varId + "/", {
-            headers: {
-                'Authorization': 'Token ' + varToken,
-            },
-        }).then((response) => {
-                console.log(response.data);
-                if(response.data.url_img != null){
-                    image_profile = "http://localhost:8000" + response.data.pay_load.url_img;
-                    document.getElementById('preview').src = image_profile;
-                }else{
-                    document.getElementById('preview').src = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png";
-                }
-            }).catch((error) => {
-                console.error("Error al obtener la imagen");
-                document.getElementById('preview').src = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png";
-            });
+    // window.onload = function visualizar_datos() {
+    //     axios.get("http://localhost:8000/api/v1/profile/user/" + varId + "/", {
+    //         headers: {
+    //             'Authorization': 'Token ' + varToken,
+    //         },
+    //     }).then((response) => {
+    //             console.log(response.data);
+    //             if(response.data.url_img != null){
+    //                 image_profile = "http://localhost:8000" + response.data.pay_load.url_img;
+    //                 document.getElementById('preview').src = image_profile;
+    //             }else{
+    //                 document.getElementById('preview').src = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png";
+    //             }
+    //         }).catch((error) => {
+    //             console.error("Error al obtener la imagen");
+    //             document.getElementById('preview').src = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png";
+    //         });
 
-        axios.get("http://localhost:8000/api/v1/profile/user/" + varId +"/",{
-            headers:{
-                'Authorization': 'Token ' + token,
-            },
-        }).then((response) =>{
-            usernameU = response.data.pay_load.username;
-            first_nameu = response.data.pay_load.first_name;
-            last_nameU = response.data.pay_load.last_name;
-            emailU = response.data.pay_load.email;
-            document.getElementById("username").placeholder = usernameU;
-            document.getElementById("firstName").placeholder = first_nameu;
-            document.getElementById("lastName").placeholder = last_nameU;
-            document.getElementById("email").placeholder = emailU;
-        }).catch((error)=>{
-            console.log(error.response.data);
-        })
-    }
+    //     axios.get("http://localhost:8000/api/v1/profile/user/" + varId +"/",{
+    //         headers:{
+    //             'Authorization': 'Token ' + token,
+    //         },
+    //     }).then((response) =>{
+    //         usernameU = response.data.pay_load.username;
+    //         first_nameu = response.data.pay_load.first_name;
+    //         last_nameU = response.data.pay_load.last_name;
+    //         emailU = response.data.pay_load.email;
+    //         document.getElementById("username").placeholder = usernameU;
+    //         document.getElementById("firstName").placeholder = first_nameu;
+    //         document.getElementById("lastName").placeholder = last_nameU;
+    //         document.getElementById("email").placeholder = emailU;
+    //     }).catch((error)=>{
+    //         console.log(error.response.data);
+    //     })
+    // }
 
 
 
-    let cambiar_userData = () => {
-        let newData = new FormData();
-        let newUsername = document.getElementById("username").value;
-        let newFirst_name = document.getElementById("firstName").value;
-        let newLast_name = document.getElementById("lastName").value;
-        let newEmail = document.getElementById("email").value;
+    // let cambiar_userData = () => {
+    //     let newData = new FormData();
+    //     let newUsername = document.getElementById("username").value;
+    //     let newFirst_name = document.getElementById("firstName").value;
+    //     let newLast_name = document.getElementById("lastName").value;
+    //     let newEmail = document.getElementById("email").value;
 
-        if (newUsername === "") {
-            newUsername = usernameU;
-        }
-        if (newFirst_name === "") {
-            newFirst_name = first_nameU;
-        }
-        if (newLast_name === "") {
-            newLast_name = last_nameU;
-        }
-        if (newEmail === "") {
-            newEmail = emailU;
-        }
-        newData.append("first_name", firstNamePut);
-        newData.append("last_name", lastNamePut);
-        newData.append("username", usernamePut);
-        newData.append("email", emailPut);
+    //     if (newUsername === "") {
+    //         newUsername = usernameU;
+    //     }
+    //     if (newFirst_name === "") {
+    //         newFirst_name = first_nameU;
+    //     }
+    //     if (newLast_name === "") {
+    //         newLast_name = last_nameU;
+    //     }
+    //     if (newEmail === "") {
+    //         newEmail = emailU;
+    //     }
+    //     newData.append("first_name", firstNamePut);
+    //     newData.append("last_name", lastNamePut);
+    //     newData.append("username", usernamePut);
+    //     newData.append("email", emailPut);
 
-        axios.put("http://localhost:8000/api/v1/profile/user/" + varId + "/", newData, {
-            headers: {
-                'Content-Type': 'multipart/form-data',
-                'Authorization': 'Token ' + varToken,
-            }
-        }).then((response) => {
-            console.log(response.data);
-            window.location.reload();
-        }).catch((error) => {
-            alert("Error", error.response.data);
-            console.log(error.response.data);
-        })
-    }
+    //     axios.put("http://localhost:8000/api/v1/profile/user/" + varId + "/", newData, {
+    //         headers: {
+    //             'Content-Type': 'multipart/form-data',
+    //             'Authorization': 'Token ' + varToken,
+    //         }
+    //     }).then((response) => {
+    //         console.log(response.data);
+    //         window.location.reload();
+    //     }).catch((error) => {
+    //         alert("Error", error.response.data);
+    //         console.log(error.response.data);
+    //     })
+    // }
 
 
     const cargar_imagen = () => {

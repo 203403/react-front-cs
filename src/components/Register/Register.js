@@ -9,6 +9,8 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Link from '@mui/material/Link';
+
 import axios from "axios"
 
 const theme = createTheme();
@@ -39,7 +41,7 @@ function App() {
             alert("Error\n" + error.response.data);
             window.location.reload();
         });
-        
+
     };
 
     return (
@@ -72,6 +74,7 @@ function App() {
                                     label="Username"
                                     type="username"
                                     id="username"
+                                    autoFocus
                                 />
                             </Grid>
                             <Grid item xs={12} sm={6}>
@@ -82,7 +85,6 @@ function App() {
                                     fullWidth
                                     id="first_name"
                                     label="First Name"
-                                    autoFocus
                                 />
                             </Grid>
                             <Grid item xs={12} sm={6}>
@@ -134,6 +136,13 @@ function App() {
                             >
                                 Registrar
                             </Button>
+                            <Grid container>
+                                <Grid item>
+                                    <Link href="http://localhost:3000/Login" variant="body2">
+                                        {"¿Ya tienes cuenta? Inicia sesión"}
+                                    </Link>
+                                </Grid>
+                            </Grid>
                         </Grid>
                     </Box>
                 </Box>

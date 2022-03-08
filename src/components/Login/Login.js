@@ -8,7 +8,8 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-
+import Link from '@mui/material/Link';
+import Grid from '@mui/material/Grid';
 
 import IconButton from '@mui/material/IconButton';
 import OutlinedInput from '@mui/material/OutlinedInput';
@@ -30,22 +31,22 @@ function App() {
         weight: '',
         weightRange: '',
         showPassword: false,
-      });
-    
-      const handleChange = (prop) => (event) => {
+    });
+
+    const handleChange = (prop) => (event) => {
         setValues({ ...values, [prop]: event.target.value });
-      };
-    
-      const handleClickShowPassword = () => {
+    };
+
+    const handleClickShowPassword = () => {
         setValues({
-          ...values,
-          showPassword: !values.showPassword,
+            ...values,
+            showPassword: !values.showPassword,
         });
-      };
-    
-      const handleMouseDownPassword = (event) => {
+    };
+
+    const handleMouseDownPassword = (event) => {
         event.preventDefault();
-      };
+    };
 
     const consumir_login = () => {
         var postData = {
@@ -53,17 +54,23 @@ function App() {
             password: document.getElementById('outlined-adornment-password').value
         }
 
-        axios.post("http://localhost:8000/api/v1/login", postData, {
-            Headers: { "Content-Type": "application/json", },
-        }).then(response => {
-            alert("Login exitoso\nBienvenido usuario: " + response.data.user_id)
-            localStorage.setItem('id_user', response.data.user_id)
-            localStorage.setItem('token', response.data.token)
-            window.location.replace("http://localhost:3000/Profile");
-        }).catch((error) => {
-            alert("Error\n" + error.response.data)
-            console.log(error.response.data);
-        });
+        if (postData.username == "" || postData.password == "") {
+            alert("Los campos no pueden estar vacios")
+        } else {
+            axios.post("http://localhost:8000/api/v1/login", postData, {
+                Headers: { "Content-Type": "application/json", },
+            }).then(response => {
+                alert("Login exitoso\nBienvenido usuario: " + response.data.user_id)
+                localStorage.setItem('id_user', response.data.user_id)
+                localStorage.setItem('token', response.data.token)
+                window.location.replace("http://localhost:3000/Profile");
+            }).catch((error) => {
+                alert("Error\n" + error.response.data.non_field_errors[0])
+                console.log(error.response.data);
+            });
+        }
+
+
     };
 
     return (
@@ -98,7 +105,7 @@ function App() {
                         <FormControl margin="normal" fullWidth variant="outlined">
                             <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
                             <OutlinedInput
-                                
+
                                 id="outlined-adornment-password"
                                 type={values.showPassword ? 'text' : 'password'}
                                 value={values.password}
@@ -126,6 +133,13 @@ function App() {
                         >
                             Login
                         </Button>
+                        <Grid container>
+                            <Grid item>
+                                <Link href="http://localhost:3000/Register" variant="body2">
+                                    {"¿No tienes cuenta? Registrate"}
+                                </Link>
+                            </Grid>
+                        </Grid>
 
                     </Box>
                 </Box>

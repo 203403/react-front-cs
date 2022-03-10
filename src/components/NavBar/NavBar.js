@@ -22,6 +22,7 @@ export default function NavBar() {
                     <Tab
                         component={Link}
                         to='/Register'
+                        onClick={remover_local}
                         label={<span style={{ color: 'white' }}>Register</span>} />
                 </Tabs>
             </AppBar>

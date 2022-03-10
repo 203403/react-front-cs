@@ -9,6 +9,10 @@ npm install @mui/material @emotion/react @emotion/styled
 ```bash
 npm install @fontsource/roboto     
 ```
+# Instalación de axios para realizar las peticiones al back-end
+```bash
+npm install axios
+```
 
 # Getting Started with Create React App
 

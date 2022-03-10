@@ -66,7 +66,6 @@ function App() {
                 window.location.replace("http://localhost:3000/Profile");
             }).catch((error) => {
                 alert("Error\n" + error.response.data.non_field_errors[0])
-                console.log(error.response.data);
             });
         }
 

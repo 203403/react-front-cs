@@ -33,7 +33,6 @@ function App() {
                 'Authorization': 'Token ' + varToken,
             },
         }).then((response) => {
-            console.log(response.data);
             if (response.data != "Error: No hay datos") {
                 if (response.data.pay_load.url_img != null) {
                     profile_image = "http://localhost:8000" + response.data.pay_load.url_img;
@@ -63,7 +62,6 @@ function App() {
                     'Authorization': 'Token ' + varToken,
                 },
             }).then((response) => {
-                console.log(response.data);
                 window.location.reload();
             }).catch((error) => {
                 alert("Error", error.response.data);
@@ -78,28 +76,24 @@ function App() {
         if (document.getElementById('username').value === '') {
             usernameU = document.getElementById('username').placeholder
         } else {
-            console.log("Estoy en el else 1")
             usernameU = document.getElementById('username').value;
         }
 
         if (document.getElementById('firstName').value === '') {
             first_nameU = document.getElementById('firstName').placeholder
         } else {
-            console.log("Estoy en el else 2")
             first_nameU = document.getElementById('firstName').value;
         }
 
         if (document.getElementById('lastName').value === '') {
             last_nameU = document.getElementById('lastName').placeholder
         } else {
-            console.log("Estoy en el else 3")
             last_nameU = document.getElementById('lastName').value;
         }
 
         if (document.getElementById('email').value === '') {
             emailU = document.getElementById('email').placeholder
         } else {
-            console.log("Estoy en el else 4")
             emailU = document.getElementById('email').value;
         }
 
@@ -109,10 +103,6 @@ function App() {
             last_name: last_nameU,
             email: emailU
         }
-        console.log(putData.username)
-        console.log(putData.first_name)
-        console.log(putData.last_name)
-        console.log(putData.email)
 
         axios.put("http://localhost:8000/api/v1/profile/user/" + varId, putData, {
             headers: {
@@ -120,12 +110,10 @@ function App() {
                 'Authorization': 'Token ' + varToken,
             }
         }).then((response) => {
-            console.log(response.data);
             alert(response.data)
             window.location.reload();
         }).catch((error) => {
             alert("Error", error.response.data);
-            console.log(error.response.data);
         })
 
     };

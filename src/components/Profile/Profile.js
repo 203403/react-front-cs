@@ -55,7 +55,7 @@ function App() {
             let postData = new FormData();
 
             postData.append("user", varId);
-            postData.append("url_img", " ");
+            postData.append("url_img", "");
             axios.post("http://localhost:8000/api/v1/profile/user/", postData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
